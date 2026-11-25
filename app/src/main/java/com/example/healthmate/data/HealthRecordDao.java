@@ -20,12 +20,11 @@ import java.util.List;
         @Delete
         void delete(HealthRecord record);
 
-        @Query("SELECT * FROM health_records ORDER BY date DESC")
+        @Query("SELECT * FROM health_records ORDER BY date DESC, id DESC")
         LiveData<List<HealthRecord>> getAllRecords();
-        @Query("SELECT * FROM health_records WHERE date = :date")
-        LiveData<List<HealthRecord>> getRecordsByDate(String date);
         @Query("SELECT * FROM health_records WHERE date = :date ORDER BY id DESC")
-        LiveData<List<HealthRecord>> getRecordByDate(String date);
+        LiveData<List<HealthRecord>> getRecordsByDate(String date);
+
     }
 
 
