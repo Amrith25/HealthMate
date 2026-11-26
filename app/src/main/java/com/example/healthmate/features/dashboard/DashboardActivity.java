@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.healthmate.R;
 import com.example.healthmate.databinding.ActivityDashboardBinding;
 import com.example.healthmate.features.addedit.AddEditActivity;
+import com.example.healthmate.features.records.RecordsActivity;
 
 public class DashboardActivity extends AppCompatActivity {
     private ActivityDashboardBinding binding;
@@ -40,6 +41,10 @@ public class DashboardActivity extends AppCompatActivity {
         });
         binding.buttonAdd.setOnClickListener(v -> {
             Intent intent = new Intent(DashboardActivity.this, AddEditActivity.class);
+            startActivity(intent);
+        });
+        binding.buttonHistory.setOnClickListener(v -> {
+            Intent intent = new Intent(DashboardActivity.this, RecordsActivity.class);
             startActivity(intent);
         });
     }
