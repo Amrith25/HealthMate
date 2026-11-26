@@ -17,4 +17,7 @@ public class AddEditViewModel extends AndroidViewModel {
         HealthRecord record = new HealthRecord(date, steps, calories, water);
         repository.insert(record);
     }
+    public void update(HealthRecord record) {
+        repository.update(record);
+    }
 }

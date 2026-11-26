@@ -1,14 +1,14 @@
 package com.example.healthmate.features.addedit;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
-
+import com.example.healthmate.data.HealthRecord;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
-
 import com.example.healthmate.R;
 import com.example.healthmate.databinding.ActivityAddEditBinding;
 import com.example.healthmate.util.DateUtils;
@@ -16,6 +16,8 @@ import com.example.healthmate.util.DateUtils;
 public class AddEditActivity extends AppCompatActivity {
     ActivityAddEditBinding binding;
     private AddEditViewModel viewModel;
+    private boolean isEditMode = false;
+    private int recordId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +26,15 @@ public class AddEditActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         viewModel = new ViewModelProvider(this).get(AddEditViewModel.class);
         binding.inputDate.setText(DateUtils.today());
+        Intent intent = getIntent();
+        if (intent.hasExtra("id")) {
+            isEditMode = true;
+            recordId = intent.getIntExtra("id", 0);
+            binding.inputDate.setText(intent.getStringExtra("date"));
+            binding.inputSteps.setText(String.valueOf(intent.getIntExtra("steps", 0)));
+            binding.inputCalories.setText(String.valueOf(intent.getIntExtra("calories", 0)));
+            binding.inputWater.setText(String.valueOf(intent.getIntExtra("water", 0)));
+        }
         binding.buttonSave.setOnClickListener(v -> saveRecord());
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -78,7 +89,13 @@ public class AddEditActivity extends AppCompatActivity {
             return;
         }
         String date = binding.inputDate.getText().toString();
-        viewModel.save(date, steps, calories, water);
+        if (isEditMode) {
+            HealthRecord record = new HealthRecord(date, steps, calories, water);
+            record.setId(recordId);
+            viewModel.update(record);
+        } else {
+            viewModel.save(date, steps, calories, water);
+        }
         Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show();
         finish();
     }

@@ -1,4 +1,5 @@
 package com.example.healthmate.features.records;
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.View;
 import com.example.healthmate.R;
 import com.example.healthmate.databinding.ActivityRecordsBinding;
+import com.example.healthmate.features.addedit.AddEditActivity;
 
 
 public class RecordsActivity extends AppCompatActivity {
@@ -32,6 +34,15 @@ public class RecordsActivity extends AppCompatActivity {
             binding.recyclerRecords.setAdapter(adapter);
             RecordsViewModel viewModel = new ViewModelProvider(this).get(RecordsViewModel.class);
             adapter.setOnRecordLongClickListener(record -> viewModel.delete(record));
+            adapter.setOnRecordClickListener(record -> {
+            Intent intent = new Intent(RecordsActivity.this, AddEditActivity.class);
+            intent.putExtra("id", record.getId());
+            intent.putExtra("date", record.getDate());
+            intent.putExtra("steps", record.getSteps());
+            intent.putExtra("calories", record.getCalories());
+            intent.putExtra("water", record.getWater());
+            startActivity(intent);
+        });
             viewModel.getRecords().observe(this, list -> {
                 adapter.setRecords(list);
                 if (list.isEmpty()) {

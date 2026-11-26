@@ -22,11 +22,19 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordView
     public interface OnRecordLongClickListener {
         void onLongClick(HealthRecord record);
     }
+
     public void setOnRecordLongClickListener(OnRecordLongClickListener listener) {
         this.listener = listener;
     }
     private OnRecordLongClickListener listener;
 
+    public interface OnRecordClickListener {
+        void onClick(HealthRecord record);
+    }
+    private OnRecordClickListener clickListener;
+    public void setOnRecordClickListener(OnRecordClickListener listener) {
+        this.clickListener = listener;
+    }
     @Override
     public RecordViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         ItemRecordBinding binding = ItemRecordBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
@@ -38,6 +46,12 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordView
         HealthRecord record = records.get(position);
         holder.binding.textRowDate.setText(record.getDate());
         holder.binding.textRowDetails.setText(String.format("Steps: %d, Calories: %d, Water: %d", record.getSteps(), record.getCalories(), record.getWater()));
+
+        holder.itemView.setOnClickListener(v -> {
+            if (clickListener != null) {
+                clickListener.onClick(record);
+            }
+        });
         holder.itemView.setOnLongClickListener(v -> {
             if (listener != null) {
                 listener.onLongClick(record);
