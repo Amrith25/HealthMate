@@ -28,22 +28,25 @@
         android:layout_marginTop="12dp"
         app:cardCornerRadius="16dp"
         app:cardElevation="4dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Steps" />
+
             <TextView
                 android:id="@+id/textSteps"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
-                android:textSize="32sp"
-                android:textColor="@color/steps_green" />
+                android:textColor="@color/steps_green"
+                android:textSize="32sp" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
@@ -53,22 +56,25 @@
         android:layout_marginTop="12dp"
         app:cardCornerRadius="16dp"
         app:cardElevation="4dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Calories burned" />
+
             <TextView
                 android:id="@+id/textCalories"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
-                android:textSize="32sp"
-                android:textColor="@color/calories_red" />
+                android:textColor="@color/calories_red"
+                android:textSize="32sp" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
@@ -78,22 +84,25 @@
         android:layout_marginTop="12dp"
         app:cardCornerRadius="16dp"
         app:cardElevation="4dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Water (ml)" />
+
             <TextView
                 android:id="@+id/textWater"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
-                android:textSize="32sp"
-                android:textColor="@color/water_blue" />
+                android:textColor="@color/water_blue"
+                android:textSize="32sp" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
