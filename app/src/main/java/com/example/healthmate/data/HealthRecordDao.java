@@ -25,7 +25,18 @@ import java.util.List;
         @Query("SELECT * FROM health_records WHERE date = :date ORDER BY id DESC")
         LiveData<List<HealthRecord>> getRecordsByDate(String date);
 
-    }
+        @Query("SELECT COALESCE(SUM(steps), 0) FROM health_records WHERE date = :date")
+                LiveData<Integer> getTotalSteps(String date);
+        @Query("SELECT COALESCE(SUM(calories), 0) FROM health_records WHERE date = :date")
+        LiveData<Integer> getTotalCalories(String date);
+        @Query("SELECT COALESCE(SUM(water), 0) FROM health_records WHERE date = :date")
+        LiveData<Integer> getTotalWater(String date);
+
+
+
+
+}
+
 
 
 
