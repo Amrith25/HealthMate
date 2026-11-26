@@ -17,6 +17,7 @@ public class AddEditActivity extends AppCompatActivity {
     ActivityAddEditBinding binding;
     private AddEditViewModel viewModel;
     private boolean isEditMode = false;
+
     private int recordId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
