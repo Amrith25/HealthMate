@@ -7,12 +7,27 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
+    android:background="@color/app_background"
     tools:context=".features.dashboard.DashboardActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="HealthMate"
+        android:textColor="#FFFFFF"
+        android:textSize="22sp"
+        android:gravity="center"
+        android:drawableStart="@drawable/ic_logo"
+        android:drawablePadding="8dp"
+        android:textStyle="bold"
+        android:background="@color/brand_purple"
+
+        android:padding="16dp" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Today"
+        android:textColor="@color/brand_purple"
         android:textSize="28sp"
         android:textStyle="bold" />
 
