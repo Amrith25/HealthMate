@@ -5,22 +5,37 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.healthmate.R;
 import com.example.healthmate.databinding.ActivityAddEditBinding;
+import com.example.healthmate.util.DateUtils;
 
 public class AddEditActivity extends AppCompatActivity {
     ActivityAddEditBinding binding;
+    private AddEditViewModel viewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         binding = ActivityAddEditBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        viewModel = new ViewModelProvider(this).get(AddEditViewModel.class);
+        binding.inputDate.setText(DateUtils.today());
+        binding.buttonSave.setOnClickListener(v -> saveRecord());
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+    private void saveRecord() {
+        String stepsText = binding.inputSteps.getText().toString().trim();
+
+        if (stepsText.isEmpty()) {
+            binding.layoutSteps.setError("Steps cannot be empty");
+            return;
+        }
+        binding.layoutSteps.setError(null);
     }
 }
