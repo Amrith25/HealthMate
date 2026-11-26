@@ -40,7 +40,7 @@ public class HealthRecord{
         return water;
     }
 
-    public void setID(int id){
+    public void setId(int id) {
         this.id = id;
     }
 }
