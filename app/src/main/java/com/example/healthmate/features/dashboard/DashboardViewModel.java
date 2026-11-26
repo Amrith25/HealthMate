@@ -12,9 +12,9 @@ public class DashboardViewModel extends AndroidViewModel {
 
     private HealthRecordRepository repository;
     private String today;
-    public LiveData<Integer> totalSteps;
-    public LiveData<Integer> totalCalories;
-    public LiveData<Integer> totalWater;
+    private LiveData<Integer> totalSteps;
+    private LiveData<Integer> totalCalories;
+    private LiveData<Integer> totalWater;
 
     public DashboardViewModel(Application application) {
         super(application);
